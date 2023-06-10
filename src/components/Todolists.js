@@ -1,22 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-const Todolists = () => {
-  const [getdata, setGetdata] = useState([]);
-  useEffect(() => {
-    setGetdata(JSON.parse(localStorage.getItem("data")));
-  }, []);
-  const deleteListItem = (e) => {
-    alert("delete item " + e.id);
-    const deletedata = getdata.filter((ef) => ef.id !== e.id);
-    setGetdata(deletedata);
+const Todolists = ({ todoList, deleteListItem, status }) => {
+    const newtodo = status === "all" ? todoList : todoList.filter((todo) => todo.process === status);
 
-    setTimeout(() => {
-      localStorage.setItem("data", JSON.stringify(deletedata));
-    }, 100);
-  };
-  return (
+      return (
     <>
-      {getdata.map((e) => {
+      {newtodo.map((e) => {
         return (
           <>
             <div className="wrap" key={e.id}>
@@ -38,7 +27,7 @@ const Todolists = () => {
                 <div className="icon">
                   <i
                     className="fa fa-trash-o"
-                    onClick={() => deleteListItem(e)}
+                    onClick={() => deleteListItem(e.id)}
                   ></i>
                 </div>
               </div>

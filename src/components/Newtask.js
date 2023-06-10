@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "./newtask.css";
-const Newtask = () => {
+const Newtask = ({ updateTodoList }) => {
   const currentDate = new Date();
   const getyear = currentDate.getFullYear().toString();
   const getdate = currentDate.getDate().toString().padStart(2, "0");
@@ -9,29 +9,15 @@ const Newtask = () => {
   const options = { hour: "numeric", minute: "numeric" };
   const gettime = currentDate.toLocaleTimeString([], options);
   const fulltime = `${gettime},${getdate}/${getmonth}/${getyear}`;
-  console.log(fulltime);
+ 
   const [currentInput, setCurrentInput] = useState({
     id: uuidv4(),
     title: "",
     process: "incomplete",
     time: fulltime
   });
-  const [alldata, setAlldata] = useState(
-    JSON.parse(localStorage.getItem("data")) === null
-      ? []
-      : JSON.parse(localStorage.getItem("data"))
-  );
-  const [updatedata , setUpdatedata] = useState(
-    JSON.parse(localStorage.getItem("data")) === null
-      ? []
-      : JSON.parse(localStorage.getItem("data"))
-  );
-
-  useEffect(() => {
-    
-    localStorage.setItem("data", [JSON.stringify(updatedata)]);
-  }, [updatedata]);
-
+  
+  
   const stopAdd = () => {
     console.log("close");
     document.getElementById("newtaskcontainer").style.display = "none";
@@ -50,11 +36,10 @@ const Newtask = () => {
         snackbar.className = snackbar.className.replace("show", "");
       }, 3000);
     } else {
+      updateTodoList(currentInput);
      
-      const existingData = JSON.parse(localStorage.getItem("data")) || [];
-      setUpdatedata([...existingData, currentInput]);
-      console.log(updatedata);
-      setAlldata([...alldata, currentInput]);
+     
+      
       setCurrentInput({  id: uuidv4(),
         title: "",
         process: "incomplete",
