@@ -6,7 +6,10 @@
     padding: 50px;
     flex-direction: column;
 }  
-
+.newtaskadd
+{
+    display: block;
+}
 
 
 .heading1{
@@ -36,7 +39,7 @@
 .btn{
     background-color:var(--primaryPurple) ;
     border: none;
-    padding: 10px 30px;
+    padding: 15px 30px;
     cursor:pointer;
     color: var(--white);
     font-weight: 550;

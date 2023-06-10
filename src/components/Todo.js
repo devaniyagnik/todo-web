@@ -1,13 +1,18 @@
 import React from "react";
 import "./todo.css";
+import Newtask from "./Newtask";
 const Todo = () => {
+  const addtask = ()=>{
+    document.getElementById("newtaskcontainer").style.display="flex";
+  }
   return (
     <>
+        <Newtask/>
       <div className="container">
         <div className="heading1">TODO LIST</div>
         <div className="main">
           <div className="firstrow">
-            <button className="btn">Add Task</button>
+            <button className="btn" onClick={addtask}>Add Task</button>
             <select name="process" className="process">
               <option value="all" className="option">
                 All
@@ -32,10 +37,10 @@ const Todo = () => {
               <div className="right_wrap">
                 
                 <div className="icon">
-                  <i class="fa fa-pencil"></i>
+                  <i className="fa fa-pencil"></i>
                 </div>
                 <div className="icon">
-                  <i class="fa fa-trash-o"></i>
+                  <i className="fa fa-trash-o"></i>
                 </div>
               </div>
             </div>

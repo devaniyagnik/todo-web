@@ -1,0 +1,142 @@
+
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: var(--white);
+    color: var(--black-2);
+    text-align: center;
+    border-radius: 5px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    right: 2%;
+    bottom: 30px;
+    font-size: 17px;
+  }
+  
+  #snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.7s;
+  }
+  
+  @-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+#newtaskcontainer{
+    position: absolute;
+    top:0;
+    background-color: rgba(0,0,0,.5);;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.close-icon{
+    width: 21rem;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-right: 1rem;
+}
+.close{
+    margin-bottom: 1rem;
+    background-color:var(--bg-2) ;
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.close i{
+    padding: 10px;
+    -webkit-text-stroke: 2px var(--bg-2);
+}
+
+
+.box{
+    background-color: var(--bg-2);
+    padding: 30px 30px;
+    max-width: 35rem;
+    border-radius: 10px;
+}
+.btn1{
+    background-color:var(--primaryPurple) ;
+    border: none;
+    padding: 15px 30px;
+    cursor:pointer;
+    color: var(--white);
+    font-weight: 550;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin-right: 1rem;
+    
+}
+.btn2{
+    background-color:var(--bg-3) ;
+    border: none;
+    padding: 15px 30px;
+    cursor:pointer;
+    color: var(--black-1);
+    font-weight: 550;
+    font-size: 1rem;
+    border-radius: 5px;
+    
+}
+.box h1{
+    margin-bottom: 1rem;
+    color: var(--black-1);
+    font-weight: 500;
+}
+.box h2{
+    color: var(--black-1);
+    margin-bottom: 0.7rem;
+    font-weight: 400;
+}
+.box input{
+    width: 100%;
+    padding: 15px 15px;
+    margin-bottom: 1rem;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+.box .select{
+    width: 100%;
+    padding: 15px 15px;
+    margin-bottom: 1rem;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+.process2{
+    width: 100%;
+    color: var(--black-2);
+    font-size: 1.4rem;
+    border: none;
+    padding: 15px 15px;
+    cursor: pointer;
+    margin-bottom: 2.5rem;
+}
+
+@media (max-width: 600px){
+    
+}
