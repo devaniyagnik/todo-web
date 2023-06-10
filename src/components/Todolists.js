@@ -4,7 +4,7 @@ const Todolists = () => {
   const [getdata, setGetdata] = useState([]);
   useEffect(() => {
     setGetdata(JSON.parse(localStorage.getItem("data")));
-  }, [getdata]);
+  }, []);
   const deleteListItem = (e) => {
     alert("delete item " + e.id);
     const deletedata = getdata.filter((ef) => ef.id !== e.id);

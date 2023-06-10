@@ -2,12 +2,26 @@ import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "./newtask.css";
 const Newtask = () => {
+  const currentDate = new Date();
+  const getyear = currentDate.getFullYear().toString();
+  const getdate = currentDate.getDate().toString().padStart(2, "0");
+  const getmonth = (currentDate.getMonth() + 1).toString().padStart(2, "0");
+  const options = { hour: "numeric", minute: "numeric" };
+  const gettime = currentDate.toLocaleTimeString([], options);
+  const fulltime = `${gettime},${getdate}/${getmonth}/${getyear}`;
+  console.log(fulltime);
   const [currentInput, setCurrentInput] = useState({
-    id:"",
+    id: uuidv4(),
     title: "",
     process: "incomplete",
+    time: fulltime
   });
   const [alldata, setAlldata] = useState(
+    JSON.parse(localStorage.getItem("data")) === null
+      ? []
+      : JSON.parse(localStorage.getItem("data"))
+  );
+  const [updatedata , setUpdatedata] = useState(
     JSON.parse(localStorage.getItem("data")) === null
       ? []
       : JSON.parse(localStorage.getItem("data"))
@@ -15,8 +29,8 @@ const Newtask = () => {
 
   useEffect(() => {
     
-    localStorage.setItem("data", [JSON.stringify(alldata)]);
-  }, [alldata]);
+    localStorage.setItem("data", [JSON.stringify(updatedata)]);
+  }, [updatedata]);
 
   const stopAdd = () => {
     console.log("close");
@@ -36,22 +50,15 @@ const Newtask = () => {
         snackbar.className = snackbar.className.replace("show", "");
       }, 3000);
     } else {
-      const currentDate = new Date();
-      const getyear = currentDate.getFullYear().toString();
-      const getdate = currentDate.getDate().toString().padStart(2, "0");
-      const getmonth = (currentDate.getMonth() + 1).toString().padStart(2, "0");
-      const options = { hour: "numeric", minute: "numeric" };
-      const gettime = currentDate.toLocaleTimeString([], options);
-      const fulltime = `${gettime},${getdate}/${getmonth}/${getyear}`;
-      console.log(fulltime);
-      const task = {
-        id: uuidv4(),
-        title: currentInput.title,
-        process: currentInput.process || "incomplete",
-        time: fulltime,
-      };
-      setAlldata([...alldata, task]);
-      setCurrentInput({ title: "", process: "" });
+     
+      const existingData = JSON.parse(localStorage.getItem("data")) || [];
+      setUpdatedata([...existingData, currentInput]);
+      console.log(updatedata);
+      setAlldata([...alldata, currentInput]);
+      setCurrentInput({  id: uuidv4(),
+        title: "",
+        process: "incomplete",
+        time: fulltime });
     }
   };
 
@@ -75,7 +82,7 @@ const Newtask = () => {
           <h2>Status</h2>
           <select
             name="process"
-            value={currentInput.process}
+            value={currentInput.process || "incomplete"}
             className="process2"
             onChange={inputChangeHandler}
           >
