@@ -39,6 +39,6 @@ npm start
 ## Screenshots
 Todo List
 
-![image](https://github.com/yagnikdevani00/todo-web/assets/133557751/59b8b0da-286e-4149-859f-6feb269d1109)
+![image](https://github.com/yagnikdevani00/todo-web/assets/133557751/3a266e27-84a9-409f-8c18-7648339ca2b5)
 
 
