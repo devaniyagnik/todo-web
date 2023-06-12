@@ -52,12 +52,12 @@
     align-items: center;
     justify-content: center;
 }
+
 .close-icon{
-    width: 21rem;
+    width: 23rem;
     display: flex;
     align-items: center;
     justify-content: end;
-    margin-right: 1rem;
 }
 .close{
     margin-bottom: 1rem;
@@ -75,7 +75,7 @@
 .box{
     background-color: var(--bg-2);
     padding: 30px 30px;
-    max-width: 35rem;
+    max-width: 40rem;
     border-radius: 10px;
 }
 .btn1{

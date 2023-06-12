@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import "./newtask.css";
-const Newtask = ({ updateTodoList }) => {
+import "./edittask.css";
+const Edittask = ({ editid, todoList, editTodoList }) => {
   const currentDate = new Date();
   const getyear = currentDate.getFullYear().toString();
   const getdate = currentDate.getDate().toString().padStart(2, "0");
@@ -10,25 +10,38 @@ const Newtask = ({ updateTodoList }) => {
   const gettime = currentDate.toLocaleTimeString([], options);
   const fulltime = `${gettime},${getdate}/${getmonth}/${getyear}`;
  
+ 
+  const userdata=todoList.filter(todo => todo.id === editid);
+   
   const [currentInput, setCurrentInput] = useState({
-    id: uuidv4(),
+    id: "",
     title: "",
     process: "incomplete",
-    time: fulltime
+    time: fulltime,
   });
   
-  
-  const stopAdd = () => {
-    // console.log("close");
-    document.getElementById("newtaskcontainer").style.display = "none";
+  useEffect(() => {
+    const userdata = todoList.filter((todo) => todo.id === editid);
+    if (userdata.length > 0) {
+      setCurrentInput({
+        id: userdata[0].id,
+        title: userdata[0].title,
+        process: userdata[0].process,
+        time: fulltime,
+      });
+    }
+  }, [editid, todoList]);
+  const stopEdit = () => {
+    
+    document.getElementById("edittaskcontainer").style.display = "none";
   };
 
   const inputChangeHandler = (e) => {
     setCurrentInput({ ...currentInput, [e.target.name]: e.target.value });
-    // console.log(currentInput);
+    
   };
 
-  const submitToAddData = () => {
+  const submitToEditData = () => {
     if (currentInput.title === "") {
       const snackbar = document.getElementById("snackbar");
       snackbar.className = "show";
@@ -36,27 +49,25 @@ const Newtask = ({ updateTodoList }) => {
         snackbar.className = snackbar.className.replace("show", "");
       }, 3000);
     } else {
-      updateTodoList(currentInput);
-     
-      document.getElementById("newtaskcontainer").style.display = "none";
-      
-      setCurrentInput({  id: uuidv4(),
-        title: "",
-        process: "incomplete",
-        time: fulltime });
+      editTodoList(currentInput);
+      setCurrentInput({ id: userdata[0].id,
+        title: userdata[0].title,
+        process: userdata[0].process,
+        time: fulltime,});
+        document.getElementById("edittaskcontainer").style.display = "none";
     }
   };
 
   return (
     <>
-      <div id="newtaskcontainer">
+      <div id="edittaskcontainer">
         <div className="close-icon">
           <div className="close">
-            <i className="fa fa-close" onClick={stopAdd}></i>
+            <i className="fa fa-close" onClick={stopEdit}></i>
           </div>
         </div>
         <div className="box">
-          <h1>Add TODO</h1>
+          <h1>Edit TODO</h1>
           <h2>Title</h2>
           <input
             type="text"
@@ -75,10 +86,10 @@ const Newtask = ({ updateTodoList }) => {
             <option value="complete">Complete</option>
           </select>
           <div className="multibtn">
-            <button className="btn1" onClick={submitToAddData}>
-              Add Task
+            <button className="btn1" onClick={submitToEditData}>
+              Edit Task
             </button>
-            <button className="btn2" onClick={stopAdd}>
+            <button className="btn2" onClick={stopEdit}>
               Cancel
             </button>
           </div>
@@ -96,4 +107,4 @@ const Newtask = ({ updateTodoList }) => {
   );
 };
 
-export default Newtask;
+export default Edittask;
