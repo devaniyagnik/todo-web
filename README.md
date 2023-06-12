@@ -1,7 +1,7 @@
 # React.js Todo List
 
 This is a simple Todo List application built using React.js. Users can add, edit, and delete tasks in the list. The application is deployed on 
-[![Like Button](https://example.com/like-button.png)](https://todo-react-js-crud.netlify.app/)
+[Netlify](https://todo-react-js-crud.netlify.app/)
 
 
 ## Features
