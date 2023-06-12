@@ -23,18 +23,19 @@ This is a simple Todo List application built using React.js. Users can add, edit
    ```bash
    git clone https://github.com/your-username/react-todo-list.git
    
-2) Navigate to the project directory:
+2. Navigate to the project directory:
 
-    cd react-todo-list
+   cd react-todo-list
 
-3)Install the dependencies:
+3. Install the dependencies:
 
-npm install
+   npm install
 
-4)Start the development server:
+4. Start the development server:
 
-npm start
-5)Open your browser and visit http://localhost:3000 to see the Todo List application.
+   npm start
+
+5. Open your browser and visit http://localhost:3000 to see the Todo List application.
 
 ## Screenshots
 Todo List
