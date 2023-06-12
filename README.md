@@ -29,11 +29,11 @@ This is a simple Todo List application built using React.js. Users can add, edit
 
 3. Install the dependencies:
 
-   npm install
+   yarn install
 
 4. Start the development server:
 
-   npm start
+   yarn start
 
 5. Open your browser and visit http://localhost:3000 to see the Todo List application.
 
